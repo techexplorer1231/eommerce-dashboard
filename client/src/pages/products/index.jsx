@@ -60,7 +60,7 @@ const Product = ({
           size="small"
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          Learn More
+          Show More
         </Button>
       </CardActions>
       <Collapse
@@ -90,7 +90,7 @@ const Products = () => {
 
   return (
     <Box m="1.5rem 2.5rem">
-      <Header title="Products" subTitle="See your list of products." />
+      <Header title="Products" subTitle="List of products." />
       {data || !isLoading ? (
         <Box
           mt="20px"
