@@ -1,14 +1,14 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { createTheme } from "@mui/material/styles";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { themeSettings } from "theme";
-import Dashboard from "pages/dashboard";
-import Layout from "pages/layout";
-import Products from "pages/products";
-import Customers from "pages/customers";
-import Transactions from "pages/transactions";
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { themeSettings } from 'theme';
+import Dashboard from 'pages/dashboard';
+import Layout from 'pages/layout';
+import Products from 'pages/products';
+import Customers from 'pages/customers';
+import Transactions from 'pages/transactions';
 
 function App() {
   const mode = useSelector((state) => state.global.mode);

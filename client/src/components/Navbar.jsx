@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   LightModeOutlined,
   DarkModeOutlined,
   Menu as MenuIcon,
   Search,
   SettingsOutlined,
-  ArrowDropDownOutlined,
-} from "@mui/icons-material";
-import FlexBetween from "components/FlexBetween";
-import { setMode } from "state";
-import profileImage from "assets/profileImage.jpg";
-import { useDispatch } from "react-redux";
+  ArrowDropDownOutlined
+} from '@mui/icons-material';
+import FlexBetween from 'components/FlexBetween';
+import { setMode } from 'state';
+import profileImage from 'assets/profileImage.jpg';
+import { useDispatch } from 'react-redux';
 import {
   AppBar,
   Button,
@@ -21,8 +21,8 @@ import {
   Typography,
   Box,
   Menu,
-  MenuItem,
-} from "@mui/material";
+  MenuItem
+} from '@mui/material';
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const dispatch = useDispatch();
@@ -42,12 +42,12 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   return (
     <AppBar
       sx={{
-        position: "static",
-        background: "none",
-        boxShadow: "none",
+        position: 'static',
+        background: 'none',
+        boxShadow: 'none'
       }}
     >
-      <Toolbar sx={{ justifyContent: "space-between" }}>
+      <Toolbar sx={{ justifyContent: 'space-between' }}>
         {/* LEFT SIDE */}
         <FlexBetween>
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
@@ -69,24 +69,24 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
         {/* RIGHT SIDE */}
         <FlexBetween gap="1.5rem">
           <IconButton onClick={() => dispatch(setMode())}>
-            {theme.palette.mode === "dark" ? (
-              <DarkModeOutlined sx={{ fontSize: "25px" }} />
+            {theme.palette.mode === 'dark' ? (
+              <DarkModeOutlined sx={{ fontSize: '25px' }} />
             ) : (
-              <LightModeOutlined sx={{ fontSize: "25px" }} />
+              <LightModeOutlined sx={{ fontSize: '25px' }} />
             )}
           </IconButton>
           <IconButton>
-            <SettingsOutlined sx={{ fontSize: "25px" }} />
+            <SettingsOutlined sx={{ fontSize: '25px' }} />
           </IconButton>
           <FlexBetween>
             <Button
               onClick={handleClick}
               sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                textTransform: "none",
-                gap: "1rem",
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                textTransform: 'none',
+                gap: '1rem'
               }}
             >
               <Box
@@ -96,7 +96,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 height="32px"
                 width="32px"
                 borderRadius="50%"
-                sx={{ objectFit: "cover" }}
+                sx={{ objectFit: 'cover' }}
               />
               <Box textAlign="left">
                 <Typography
@@ -106,22 +106,19 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                 >
                   {user.name}
                 </Typography>
-                <Typography
-                  fontSize="0.75rem"
-                  sx={{ color: theme.palette.secondary[200] }}
-                >
+                <Typography fontSize="0.75rem" sx={{ color: theme.palette.secondary[200] }}>
                   {user.occupation}
                 </Typography>
               </Box>
               <ArrowDropDownOutlined
-                sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
+                sx={{ color: theme.palette.secondary[300], fontSize: '25px' }}
               />
             </Button>
             <Menu
               anchorEl={anchorEl}
               open={isOpen}
               onClose={handleClose}
-              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             >
               <MenuItem onClick={handleClose}>Log Out</MenuItem>
             </Menu>
