@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Box,
   Divider,
@@ -10,8 +10,8 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
-  useTheme
-} from '@mui/material';
+  useTheme,
+} from "@mui/material";
 import {
   SettingsOutlined,
   ChevronLeft,
@@ -26,75 +26,81 @@ import {
   CalendarMonthOutlined,
   AdminPanelSettingsOutlined,
   TrendingUpOutlined,
-  PieChartOutlined
-} from '@mui/icons-material';
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import FlexBetween from './FlexBetween';
-import profileImage from 'assets/profileImage.jpg';
+  PieChartOutlined,
+} from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import FlexBetween from "./FlexBetween";
+import profileImage from "assets/profileImage.jpg";
 
 const navItems = [
   {
-    text: 'Dashboard',
-    icon: <HomeOutlined />
+    text: "Dashboard",
+    icon: <HomeOutlined />,
   },
   {
-    text: 'Client Facing',
-    icon: null
+    text: "Client Facing",
+    icon: null,
   },
   {
-    text: 'Products',
-    icon: <ShoppingCartOutlined />
+    text: "Products",
+    icon: <ShoppingCartOutlined />,
   },
   {
-    text: 'Customers',
-    icon: <Groups2Outlined />
+    text: "Customers",
+    icon: <Groups2Outlined />,
   },
   {
-    text: 'Transactions',
-    icon: <ReceiptLongOutlined />
+    text: "Transactions",
+    icon: <ReceiptLongOutlined />,
   },
   {
-    text: 'Geography',
-    icon: <PublicOutlined />
+    text: "Geography",
+    icon: <PublicOutlined />,
   },
   {
-    text: 'Sales',
-    icon: null
+    text: "Sales",
+    icon: null,
   },
   {
-    text: 'Overview',
-    icon: <PointOfSaleOutlined />
+    text: "Overview",
+    icon: <PointOfSaleOutlined />,
   },
   {
-    text: 'Daily',
-    icon: <TodayOutlined />
+    text: "Daily",
+    icon: <TodayOutlined />,
   },
   {
-    text: 'Monthly',
-    icon: <CalendarMonthOutlined />
+    text: "Monthly",
+    icon: <CalendarMonthOutlined />,
   },
   {
-    text: 'Breakdown',
-    icon: <PieChartOutlined />
+    text: "Breakdown",
+    icon: <PieChartOutlined />,
   },
   {
-    text: 'Management',
-    icon: null
+    text: "Management",
+    icon: null,
   },
   {
-    text: 'Admin',
-    icon: <AdminPanelSettingsOutlined />
+    text: "Admin",
+    icon: <AdminPanelSettingsOutlined />,
   },
   {
-    text: 'Performance',
-    icon: <TrendingUpOutlined />
-  }
+    text: "Performance",
+    icon: <TrendingUpOutlined />,
+  },
 ];
 
-const Sidebar = ({ user, isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOpen }) => {
+const Sidebar = ({
+  user,
+  isNonMobile,
+  drawerWidth,
+  isSidebarOpen,
+  setIsSidebarOpen,
+}) => {
   const { pathname } = useLocation();
-  const [active, setActive] = useState('');
+  const [active, setActive] = useState("");
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -113,12 +119,12 @@ const Sidebar = ({ user, isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOp
           anchor="left"
           sx={{
             width: drawerWidth,
-            '& .MuiDrawer-paper': {
+            "& .MuiDrawer-paper": {
               color: theme.palette.secondary[200],
               backgroundColor: theme.palette.background.alt,
-              boxSizing: isNonMobile ? 0 : '2px',
-              width: drawerWidth
-            }
+              boxSizing: isNonMobile ? 0 : "2px",
+              width: drawerWidth,
+            },
           }}
         >
           <Box width="100%">
@@ -140,7 +146,7 @@ const Sidebar = ({ user, isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOp
               {navItems.map(({ text, icon }) => {
                 if (!icon) {
                   return (
-                    <Typography key={text} sx={{ m: '2.25rem 0 1rem 3rem' }}>
+                    <Typography key={text} sx={{ m: "2.25rem 0 1rem 3rem" }}>
                       {text}
                     </Typography>
                   );
@@ -156,26 +162,30 @@ const Sidebar = ({ user, isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOp
                       }}
                       sx={{
                         backgroundColor:
-                          active === lcText ? theme.palette.secondary[300] : 'transparent',
+                          active === lcText
+                            ? theme.palette.secondary[300]
+                            : "transparent",
                         color:
                           active === lcText
                             ? theme.palette.primary[600]
-                            : theme.palette.secondary[200]
+                            : theme.palette.secondary[200],
                       }}
                     >
                       <ListItemIcon
                         sx={{
-                          ml: '2rem',
+                          ml: "2rem",
                           color:
                             active === lcText
                               ? theme.palette.primary[600]
-                              : theme.palette.secondary[200]
+                              : theme.palette.secondary[200],
                         }}
                       >
                         {icon}
                       </ListItemIcon>
                       <ListItemText primary={text} />
-                      {active === lcText && <ChevronRightOutlined sx={{ ml: 'auto' }} />}
+                      {active === lcText && (
+                        <ChevronRightOutlined sx={{ ml: "auto" }} />
+                      )}
                     </ListItemButton>
                   </ListItem>
                 );
@@ -192,7 +202,7 @@ const Sidebar = ({ user, isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOp
                 height="40px"
                 width="40px"
                 borderRadius="50%"
-                sx={{ objectFit: 'cover' }}
+                sx={{ objectFit: "cover" }}
               />
               <Box textAlign="left">
                 <Typography
@@ -202,11 +212,16 @@ const Sidebar = ({ user, isNonMobile, drawerWidth, isSidebarOpen, setIsSidebarOp
                 >
                   {user.name}
                 </Typography>
-                <Typography fontSize="0.8rem" sx={{ color: theme.palette.secondary[200] }}>
+                <Typography
+                  fontSize="0.8rem"
+                  sx={{ color: theme.palette.secondary[200] }}
+                >
                   {user.occupation}
                 </Typography>
               </Box>
-              <SettingsOutlined sx={{ color: theme.palette.secondary[300], fontSize: '25px' }} />
+              <SettingsOutlined
+                sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
+              />
             </FlexBetween>
           </Box>
         </Drawer>
