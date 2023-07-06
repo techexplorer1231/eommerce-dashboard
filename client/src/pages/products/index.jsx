@@ -125,7 +125,7 @@ const Products = () => {
                 supply={supply}
                 stat={stat}
               />
-            )
+            ),
           )}
         </Box>
       ) : (
