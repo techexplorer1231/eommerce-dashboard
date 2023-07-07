@@ -238,4 +238,173 @@ app.use("/sales", salesRoutes);
 toolbar: {
   searchInput, setSearchInput, setSearch;
 }
+
+const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch }) => {
+  return (
+    <GridToolbarContainer>
+      <FlexBetween width="100%">
+        <FlexBetween>
+          <GridToolbarColumnsButton />
+          <GridToolbarDensitySelector />
+          <GridToolbarExport />
+        </FlexBetween>
+        <TextField
+          label="Search..."
+          sx={{ mb: "0.5rem", width: "15rem" }}
+          onChange={(e) => setSearchInput(e.target.value)}
+          value={searchInput}
+          variant="standard"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  onClick={() => {
+                    setSearch(searchInput);
+                    setSearchInput("");
+                  }}
+                >
+                  <Search />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+      </FlexBetween>
+    </GridToolbarContainer>
+  );
+```
+
+##### renderCell to render custom cells in the Data Grid
+
+```js
+ {
+      field: "phoneNumber",
+      headerName: "Phone Number",
+      flex: 0.5,
+      renderCell: (params) => {
+        return params.value.replace(/^(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
+      },
+    },
+
+      {
+      field: "products",
+      headerName: "# of products",
+      flex: 0.5,
+      sortable: false,
+      renderCell: (params) => params.value.length,
+    },
+
+    {
+      field: "cost",
+      headerName: "Cost",
+      flex: 1,
+      renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
+    },
+```
+
+##### To override a material ui css
+
+```js
+"& .MuiDataGrid-footerContainer": {
+            backgroundColor: theme.palette.background.alt,
+            color: theme.palette.secondary[100],
+            borderTop: "none",
+          },
+```
+
+##### To override the default CSS of material ui in case of same selector
+
+```js
+ "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+            color: `${theme.palette.secondary[200]} !important`,
+          },
+```
+
+##### Sending only the first element of the array to the frontend
+
+```js
+ try {
+    const overallStat = await OverallStat.find();
+    res.status(200).json(overallStat[0]);
+  }
+```
+
+##### To disable eslint for a particular line
+
+```js
+ return [[totalSalesLine], [totalUnitsLine]];
+  }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
+```
+
+##### MongoDB aggregation
+
+```js
+const userWithStats = await User.aggregate([
+  { $match: { _id: new mongoose.Types.ObjectId(id) } },
+  {
+    $lookup: {
+      from: "affiliatestats",
+      localField: "_id",
+      foreignField: "userId",
+      as: "affiliateStats",
+    },
+  },
+  {
+    $unwind: "$affiliateStats",
+  },
+]);
+```
+
+Here's an explanation of the code step by step:
+
+1. `const userWithStats = await User.aggregate([...]);`
+
+   - This line initializes a constant variable called `userWithStats` and assigns it the result of the aggregation operation performed on the `User` collection. The `await` keyword is used because the operation is asynchronous.
+
+2. `{ $match: { _id: new mongoose.Types.ObjectId(id) } },`
+
+   - This is the first stage of the aggregation pipeline. It uses the `$match` operator to filter documents in the `User` collection based on the `_id` field. The value of `_id` is passed as `id` variable, which is converted to a MongoDB ObjectId using `new mongoose.Types.ObjectId(id)`.
+
+3. ```js
+   {
+     $lookup: {
+       from: "affiliatestats",
+       localField: "_id",
+       foreignField: "userId",
+       as: "affiliateStats",
+     },
+   },
+   ```
+
+   - This stage uses the `$lookup` operator to perform a left outer join between the `User` collection and the `affiliatestats` collection. It retrieves documents from the `affiliatestats` collection that have a `userId` field matching the `_id` of the current document in the `User` collection.
+   - The `localField` option specifies the field in the `User` collection to match (`_id` in this case).
+   - The `foreignField` option specifies the field in the `affiliatestats` collection to match (`userId` in this case).
+   - The `as` option specifies the name of the array field where the joined documents will be stored (`affiliateStats` in this case).
+
+4. `{ $unwind: "$affiliateStats" },`
+   - This stage uses the `$unwind` operator to deconstruct the `affiliateStats` array field created in the previous stage. It creates a new document for each element in the array, effectively flattening it.
+
+After the execution of the code, the `userWithStats` variable will contain the result of the aggregation operation. It will be an array of documents, where each document represents a joined record from the `User` and `affiliatestats` collections, with the additional `affiliateStats` field that holds the joined document from the `affiliatestats` collection.
+
+##### To modify scrollbar styles
+
+```css
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #7a7f9d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-track:hover {
+  background: #7a7f9d;
+}
 ```
