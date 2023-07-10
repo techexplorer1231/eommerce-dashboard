@@ -26,4 +26,6 @@
 
 ##### Products Page
 
+### Deployed on free tier using [render](https://render.com/)
+
 ![Products Page](/Products-Page.png?raw=true "Products Page")
